@@ -13,63 +13,116 @@
 
 
 
-let max = 5;
-const PROCENT = 10;
+// let max = 5;
+// const PROCENT = 10;
   
-for (let i = 1; i <= max; i++) {
-	sum = prompt('какую сумму грн. вы хотите вложить? Принимаем от 5000-200000грн.!', '');
-	if(!isNaN(sum)) {
-		if(sum !== null) {
-			if(sum !== '') {
-				if (sum >= 5000 && sum <= 200000) {
-					let ear = prompt('На какой срок хотите сделать вклад? Возможные варианты от 2 -15 лет!', '');
-					if(!isNaN(ear)) {
-						if(ear !== null) {
-							if(ear !== '') {
-								if (ear >= 2 && ear <=15) {
-									let result = (((+sum * PROCENT * +ear) / 100) + +sum);
-									document.write(`В конце срока вы получите ${result} грн`);
-								} else {
-									document.write('На такой строк вклады не принимаем!');
-								}
-							} 
-							else {
-						      	document.write('Вы пропустили ввод!');
-						    }
-						}	
-						else {
-							document.write('До встречи!!');
-							break;
-						}
-					}
-					else{
-						document.write('Введите число!');
-						break;
-					}
-				} else if (sum <= 5000) { // (**)
-				  document.write('Слишком маленькая сумма вклада');
+// for (let i = 1; i <= max; i++) {
+// 	sum = prompt('какую сумму грн. вы хотите вложить? Принимаем от 5000-200000грн.!', '');
 
-				} else {
-				  document.write('Слишком большая сумма вклада');
+// 	if(!isNaN(sum)) {
 
-				}
-				break;
-			} 
-			else {
-		      	if (i >= max) {
-	        		document.write('У Вас закончились попытки купить у нас товар!'); // console.log ('//...')
-		      	} else {
-		       		document.write(`Введите корректный запрос. Попытка ${i} из ${max}`); // console.log ('//...')
-		      	}
-		    }
-		}	
-		else {
-			document.write('До встречи!!');
-			break;
-		}
-	}
-	else{
-		document.write('Введите число!');
-		break;
+// 		if(sum !== null) {
+
+// 			if(sum !== '') {
+
+// 				if (sum >= 5000 && sum <= 200000) {
+
+// 					let ear = prompt('На какой срок хотите сделать вклад? Возможные варианты от 2 -15 лет!', '');
+
+// 					if(!isNaN(ear)) {
+
+// 						if(ear !== null) {
+
+// 							if(ear !== '') {
+
+// 								if (ear >= 2 && ear <=15) {
+
+// 									let result = (((+sum * PROCENT * +ear) / 100) + +sum);
+// 									document.write(`В конце срока вы получите ${result.toFixed(2)} грн`);
+
+// 								} else {
+// 									document.write('На такой строк вклады не принимаем!');
+// 								}
+// 							} else {
+// 						      	document.write('Вы пропустили ввод!');
+// 						    }
+// 						} else {
+// 							document.write('До встречи!!');
+// 							break;
+// 						}
+// 					} else{
+// 						document.write('Введите число!');
+// 						break;
+// 					}
+// 				} else if (sum <= 5000) { // (**)
+// 				  document.write('Слишком маленькая сумма вклада');
+
+// 				} else {
+// 				  document.write('Слишком большая сумма вклада');
+
+// 				}
+// 				break;
+			
+// 		 	} else {
+// 		      	if (i >= max) {
+// 	        		document.write('У Вас закончились попытки купить у нас товар!'); // console.log ('//...')
+// 		      	} else {
+// 		       		document.write(`Введите корректный запрос. Попытка ${i} из ${max}`); // console.log ('//...')
+// 		      	}
+// 		    }
+// 		} else {
+// 			document.write('До встречи!!');
+// 			break;
+// 		}
+// 	} else{
+// 		document.write('Введите число!');
+// 		break;
+// 	}
+// }
+
+
+
+///////////////var 2
+const PROCENT = 10;
+function testNan(sum, ear) {
+	if (!isNaN(sum)) {
+		return true;
+	} else {
+		return document.write('Введите корректное число!');
 	}
 }
+function testNull(sum, ear) {
+	if (sum !== null) {
+		return true;
+	} else {
+		return document.write('До встречи!!');
+	}
+} 
+function testStr(sum, ear) {
+	if (sum !== '') {
+		return true;
+	} else {
+		return document.write('Вы ввели пустую строку!');
+	}
+} 
+
+let sum = prompt('какую сумму грн. вы хотите вложить? Принимаем от 5000-200000грн.!', '');
+if (testNan(sum) && testNull(sum) && testStr(sum)) {
+	if (sum >= 5000 && sum <= 200000) {
+
+		let	ear = prompt('На какой срок хотите сделать вклад? Возможные варианты от 2 -15 лет!', '');
+		if (testNan(ear) && testNull(ear) && testStr(ear)) {
+			if (ear >= 2 && ear <=15) {
+				
+				let result = (((+sum * PROCENT * +ear) / 100) + +sum);
+				document.write(`В конце срока вы получите ${result} грн`);
+			} else {
+				document.write('На такой строк вклады не принимаем!');
+			}
+		}
+	} else if (sum < 5000){
+ 		document.write('Слишком маленькая сумма вклада');
+ 	} else {
+ 		document.write('Слишком большая сумма вклада');
+ 	}
+}  
