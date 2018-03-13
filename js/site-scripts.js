@@ -127,6 +127,13 @@
 //  	}
 // }  
 
+
+
+
+
+
+
+
 let wrapper = document.createElement('div');
 		wrapper.className = 'wrapper';
 		document.body.appendChild(wrapper);
@@ -136,7 +143,7 @@ let header = document.createElement('header');
 		wrapper.appendChild(header);
 
 let headerWrap = document.createElement('div');
-		headerWrap.className = 'header-wrapp container';
+		headerWrap.className = 'container header-wrapp';
 		header.appendChild(headerWrap);
 
 let logo = document.createElement('div');
@@ -167,7 +174,7 @@ for (let i = 0, ln = menuLink.length; i < ln; i++) {
   menuList.appendChild(menuItems);
 }
 
-
+////////////header////////////////
 
 let mainContent = document.createElement('main');
 		mainContent.className = 'main-content';
@@ -178,6 +185,8 @@ let divContainer = document.createElement('div');
 
 	mainContent.appendChild(divContainer);
 
+
+/////////////multi table//////////////
 let newInput = document.createElement('input');
 	newInput.className = 'btn';
 	newInput.type='button';
@@ -203,26 +212,127 @@ let table = document.createElement('table');
 
 	newInput.onclick = function() {
       	table.classList.toggle('open');
-    };
+  };
+/////////////multi table//////////////
+ 
 
-   
+///////////////play list show hide////////////////
+let playWrapper = document.createElement('div');
+	playWrapper.className = 'play-wrapper container';
+	mainContent.appendChild(playWrapper);
+
+let playBtn = document.createElement('input');
+  playBtn.className = 'btn';
+  playBtn.type='button';
+  playBtn.value = 'Play List Show';
+  playWrapper.appendChild(playBtn);
+
+  let isOpen = false;
+  playBtn.addEventListener('click', function (event) {
+    this.value = (!isOpen) ? 'Play List Hide' : 'Play List Show';
+    
+    isOpen = !isOpen;
+    list.classList.toggle('right');
+  });
+
+
+
+let list = document.createElement('ul');
+	list.className = 'play-list';
+	
+	
+let playList = [{
+        author: "led zeppelin",
+        song: "stairway to heaven",
+        duration: "2:03"
+    },
+    {
+        author: "queen",
+        song: "bohemian rhapsody",
+        duration: "2:30"
+    },
+    {
+        author: "lynyrd skynyrd",
+        song: "free bird",
+        duration: "1:56"
+    },
+    {
+        author: "deep purple",
+        song: "smoke on the water",
+        duration: "3:03"
+    },
+    {
+        author: "jimi hendrix",
+        song: "all along the watchtower",
+        duration: "2:53"
+    },
+    {
+        author: "AC/DC",
+        song: "back in black",
+        duration: "2:43"
+    },
+    {
+        author: "queen",
+        song: "we will rock you",
+        duration: "2:13"            
+    },
+    {
+        author: "metallica",
+        song: "enter sandman",
+        duration: "3:03"            
+    }
+];
+
+for (let i = 0, ln = playList.length; i < ln; i++) {
+
+  let playItems = document.createElement('li');
+  playItems.className = 'play__items';
+
+    let playWrapp = document.createElement('div');
+    playWrapp.className = 'play-wrapp';
+    playItems.appendChild(playWrapp);
+
+    let playDuration = document.createElement('h3');
+    playDuration.className = 'play__duration';
+    playDuration.textContent = playList[i].duration;
+    playWrapp.appendChild(playDuration);
+
+    let playAuthor = document.createElement('h3');
+    playAuthor.className = 'play__author';
+    playAuthor.textContent = playList[i].author;
+    playWrapp.appendChild(playAuthor);
+
+
+    let playSong = document.createElement('h3');
+    playSong.className = 'play__author';
+    playSong.textContent = playList[i].song;
+    playItems.appendChild(playSong);
+ 
+
+  list.appendChild(playItems);
+}	
+playWrapper.appendChild(list);
+///////////////play list show hide////////////////
+
+
+  /////////////////footer//////////////
 let footer = document.createElement('footer');
-		footer.className = 'footer';
-		wrapper.appendChild(footer);
+    footer.className = 'footer';
+    wrapper.appendChild(footer);
 
 let footerWrap = document.createElement('div');
-		footerWrap.className = 'footer-wrapp container';
-		footer.appendChild(footerWrap);
+    footerWrap.className = 'footer-wrapp container';
+    footer.appendChild(footerWrap);
 
 let socialList = document.createElement('ul');
-	socialList.className = 'social-list';
-	footerWrap.appendChild(socialList);
+  socialList.className = 'social-list';
+  footerWrap.appendChild(socialList);
 
 
 let socialLink = [
-	`<a class="social__link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>`,
-	`<a class="social__link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>`,
-	`<a class="social__link" href="#"><i class="fa fa-google" aria-hidden="true"></i></a>`
+  `<a class="social__link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>`,
+  `<a class="social__link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>`,
+  `<a class="social__link" href="#"><i class="fa fa-google" aria-hidden="true"></i></a>`
 ];
  
 for (let i = 0, ln = socialLink.length; i < ln; i++) {
@@ -231,6 +341,4 @@ for (let i = 0, ln = socialLink.length; i < ln; i++) {
   socialItems.innerHTML = socialLink[i];
   socialList.appendChild(socialItems);
 }
-	
- 		
- 	 
+   /////////////////footer//////////////
